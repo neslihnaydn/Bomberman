@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public GameObject enemy;
     public float speed;
     private Vector2 positionOrigin;
     private Vector2 positionDisplacement;
@@ -14,7 +13,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
-        positionOrigin = enemy.transform.position;
+        positionOrigin = transform.position;
         float randomDistance = Random.Range(-50f, 50f);
         positionDisplacement = new Vector2(randomDistance, randomDistance);
     }
@@ -22,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
     public void Update()
     {
         float x = positionOrigin.x + Mathf.PingPong(Time.time * speed, 6);
-        enemy.GetComponent<Rigidbody2D>().MovePosition(new Vector2(x, enemy.transform.position.y));
+        GetComponent<Rigidbody2D>().MovePosition(new Vector2(x, transform.position.y));
     }
 
     void OnCollisionEnter2D(Collision2D collision)
