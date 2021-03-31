@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -23,5 +24,12 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         GetComponent<Rigidbody2D>().MovePosition(GetComponent<Rigidbody2D>().position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy") {
+            SceneManager.LoadScene("GameOverScene");
+        }
     }
 }

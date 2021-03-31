@@ -11,12 +11,9 @@ public class Explosion : MonoBehaviour
 			// collider.gameObject.GetComponent<PlayerLife> ().LoseLife ();
             Destroy(GameObject.FindGameObjectWithTag("Player"));
             // Invoke("LoadScene", 1);
-            LoadScene();
-		}
+            SceneManager.LoadScene("GameOverScene");
+		} else if(collider.gameObject.tag == "Enemy") {
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+        }
 	}
-
-    void LoadScene() 
-    {
-        SceneManager.LoadScene("GameOverScene");
-    }
 }
